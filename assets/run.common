@@ -8,6 +8,9 @@ do_mounts()
 	mount --bind /sys debian/sys/ > /dev/null
 	mount --bind /sys/fs/bpf/ debian/sys/fs/bpf/ > /dev/null
 	mount --bind /sys/fs/cgroup/ debian/sys/fs/cgroup/ > /dev/null
+	# https://source.android.google.cn/docs/core/architecture/kernel/using-debugfs-12
+	# To mount DebugFS 
+	mount -t debugfs debugfs /sys/kernel/debug
 	mount --bind /sys/kernel/debug/ debian/sys/kernel/debug/ > /dev/null
 
 	mount --bind /sys/kernel/tracing/ debian/sys/kernel/tracing/
