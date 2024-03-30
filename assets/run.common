@@ -23,6 +23,11 @@ do_mounts()
 	fi
 
 	# don't mount /data to avoid data loss
+	if [ -d /data/adb ]; then
+		mkdir -p debian/data/adb/
+		mount --bind /data/adb debian/data/adb/
+	fi
+
 	if [ -d /system/ ]; then
 		mkdir -p debian/system/
 		mount --bind /system debian/system/
@@ -31,6 +36,11 @@ do_mounts()
 	if [ -d /vendor/ ]; then
 		mkdir -p debian/vendor/
 		mount --bind /vendor debian/vendor/
+	fi
+
+	if [ -d /odm/ ]; then
+		mkdir -p debian/odm/
+		mount --bind /vendor debian/odm/
 	fi
 
 	if [ -d /apex/ ]; then
